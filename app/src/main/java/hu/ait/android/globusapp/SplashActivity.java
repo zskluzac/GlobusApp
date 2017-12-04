@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -18,13 +19,16 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         ImageView splashImage = (ImageView) findViewById(R.id.splash_image);
         TextView splashText = (TextView) findViewById(R.id.splash_text);
 
         Animation anim = AnimationUtils.loadAnimation(
                 SplashActivity.this, R.anim.show_anim);
         splashImage.startAnimation(anim);
-        splashText.startAnimation(anim);
+        //splashText.startAnimation(anim);
 
         new Handler().postDelayed(new Runnable(){
             @Override

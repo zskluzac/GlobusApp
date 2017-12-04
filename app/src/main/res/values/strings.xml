@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">GlobusApp</string>
     <string name="welcome_to_globus">Welcome to Globus</string>
+    <string name="app_title">Globus</string>
+    <string name="contdescLogo">Logo</string>
+    <string name="username">Username:</string>
+    <string name="enter_here">Enter Here</string>
+    <string name="password">Password:</string>
 </resources>

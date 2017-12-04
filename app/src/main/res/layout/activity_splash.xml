@@ -4,22 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="#000000"
+    android:gravity="center_vertical|center_horizontal|center"
+    android:orientation="vertical"
     tools:context="hu.ait.android.globusapp.SplashActivity">
 
     <ImageView
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
         android:id="@+id/splash_image"
-        android:paddingTop="100dp"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="100dp"
+        android:src="@drawable/globus_logo"/>
 
     <TextView
         android:id="@+id/splash_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome_to_globus"
-        android:paddingTop="50dp"
         android:layout_gravity="center"
-        android:textColor="#FFFFFF"/>
+        android:paddingTop="50dp"
+        android:text="@string/welcome_to_globus"
+        android:textSize="20dp"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>
