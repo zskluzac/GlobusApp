@@ -1,6 +1,7 @@
 package hu.ait.android.globusapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ public class FileActivity extends AppCompatActivity {
     private FileListAdapter adapter;
     private List<FileObject> fileList;
     private String intentID;
+    private String intentName;
+    public static String FILE = "FILE";
     private Context context;
 
     @Override
@@ -36,8 +39,8 @@ public class FileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file);
 
-        String givenName = getIntent().getStringExtra(EndpointActivity.NAME);
-        String givenID = getIntent().getStringExtra(EndpointActivity.ID);
+        intentName = getIntent().getStringExtra(EndpointActivity.NAME);
+        intentID = getIntent().getStringExtra(EndpointActivity.ID);
         context = this;
 
         fileList = new ArrayList<>();
@@ -89,6 +92,11 @@ public class FileActivity extends AppCompatActivity {
 
     public void commitFile(int position, String filename) {
         Toast.makeText(this, filename, Toast.LENGTH_LONG).show();
+        Intent transferIntent = new Intent(this, TransferActivity.class);
+        transferIntent.putExtra(EndpointActivity.NAME, intentName);
+        transferIntent.putExtra(EndpointActivity.ID, intentID);
+        transferIntent.putExtra(FILE, filename);
+        startActivity(transferIntent);
     }
 
     @NonNull

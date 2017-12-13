@@ -7,4 +7,8 @@
     <string name="enter_here">Enter Here</string>
     <string name="password">Password:</string>
     <string name="sample_text">Sample Text</string>
+    <string name="transfer_in_progress">Transfer In Progress</string>
+    <string name="task_not_possible">Task Not Possible</string>
+    <string name="transferring">Transferring</string>
+    <string name="to">to</string>
 </resources>
