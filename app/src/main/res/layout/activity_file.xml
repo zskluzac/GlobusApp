@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hu.ait.android.globusapp.FileActivity"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarFiles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#32619B"
+        app:theme="@style/ToolBarStyle" />
+
+    <TextView
+        android:id="@+id/tvFileInstruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Your Files Below: "/>
+
+    <include layout="@layout/file_scrolling"/>
+
+</LinearLayout>
