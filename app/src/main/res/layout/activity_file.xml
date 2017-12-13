@@ -15,10 +15,11 @@
         app:theme="@style/ToolBarStyle" />
 
     <TextView
+        android:gravity="center"
         android:id="@+id/tvFileInstruction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select Your Files Below: "/>
+        android:text="@string/please_select_which_file_you_d_like_to_transfer"/>
 
     <include layout="@layout/file_scrolling"/>
 

@@ -82,7 +82,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
     private void setAnimation(View viewToAnimate, int position) {
         // If the bound view wasn't previously displayed on screen, it's animated
         if (position > lastPosition) {
-            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
         }

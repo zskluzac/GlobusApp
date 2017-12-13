@@ -15,10 +15,11 @@
         app:theme="@style/ToolBarStyle" />
 
     <TextView
+        android:gravity="center"
         android:id="@+id/tvTest"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="TEST TEST"/>
+        android:text="@string/please_select_which_endpoint_you_d_like_to_transfer_to"/>
 
     <include layout="@layout/endpoint_scrolling" />
 

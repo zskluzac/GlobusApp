@@ -91,7 +91,6 @@ public class FileActivity extends AppCompatActivity {
     }
 
     public void commitFile(int position, String filename) {
-        Toast.makeText(this, filename, Toast.LENGTH_LONG).show();
         Intent transferIntent = new Intent(this, TransferActivity.class);
         transferIntent.putExtra(EndpointActivity.NAME, intentName);
         transferIntent.putExtra(EndpointActivity.ID, intentID);

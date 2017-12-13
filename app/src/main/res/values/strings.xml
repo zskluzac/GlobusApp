@@ -11,4 +11,18 @@
     <string name="task_not_possible">Task Not Possible</string>
     <string name="transferring">Transferring</string>
     <string name="to">to</string>
+    <string name="please_select_which_endpoint_you_d_like_to_transfer_to">Please select which endpoint you\'d like to transfer to:</string>
+    <string name="please_select_which_file_you_d_like_to_transfer">Please select which file you\'d like to transfer:</string>
+    <string name="help">Help</string>
+    <string name="about">About</string>
+    <string name="first_about">This app was developed by Zachary Skluzacek with the permission</string>
+    <string name="second_about">of the University of Chicago.</string>
+    <string name="what_is_globus">What is Globus?</string>
+    <string name="globus_desc">Globus is a data transfer and storage service, but this app helps you transfer files between your computer and another.</string>
+    <string name="what_do_i_do_on_here">What do I do on here?</string>
+    <string name="first">- First, you select the endpoint you\'d like to transfer files to.</string>
+    <string name="second">- Second, you select the file you\'d like to transfer.</string>
+    <string name="third">- Third, you watch as your file is successfully copied to the new location!</string>
+    <string name="how_does_it_work">How Does It Work?</string>
+    <string name="how">This app works using the Globus Transfer/Authentication API, and a custom backend installed on your computer. Through the magic of the cloud, it takes your files and copies them to a new location, but only if you have access.</string>
 </resources>

@@ -1,11 +1,13 @@
 package hu.ait.android.globusapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import hu.ait.android.globusapp.network.GlobusAPI;
@@ -32,6 +34,7 @@ public class TransferActivity extends AppCompatActivity {
         filename = getIntent().getStringExtra(FileActivity.FILE);
 
         TextView tvTaskDescription = findViewById(R.id.tvTaskDescription);
+        final LinearLayout transferLayout = findViewById(R.id.transferLayout);
         final TextView tvProgress = findViewById(R.id.tvProgress);
 
         tvTaskDescription.setText(formatDescription(endpointName, endpointID, filename));
@@ -46,6 +49,8 @@ public class TransferActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful()) {
                     tvProgress.setText(response.body());
+                    tvProgress.setTextColor(Color.BLACK);
+                    transferLayout.setBackgroundColor(Color.GREEN);
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
