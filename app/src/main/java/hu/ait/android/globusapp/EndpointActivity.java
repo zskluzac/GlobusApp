@@ -41,42 +41,53 @@ public class EndpointActivity extends AppCompatActivity {
         setContentView(R.layout.activity_endpoint);
 
         context = this;
-
         endpointList = new ArrayList<>();
         Retrofit retrofit = getRetrofit();
         final GlobusAPI api = retrofit.create(GlobusAPI.class);
 
+        makeAPICall(api);
+        setupToolbar();
+    }
+
+    private void makeAPICall(GlobusAPI api) {
         Call<Map<String,List<EndList>>> call = api.getEndpoints();
 
         call.enqueue(new Callback<Map<String, List<EndList>>>() {
             @Override
             public void onResponse(Call<Map<String, List<EndList>>> call, Response<Map<String, List<EndList>>> response) {
                 if(response.isSuccessful()) {
-                    for(EndList end : response.body().get("list")) {
-                        Endpoint newEnd = new Endpoint(end.getName(), end.getId());
-                        endpointList.add(newEnd);
-                        Log.d("UPDATE: ", endpointList.get(endpointList.size()-1).getName() + newEnd.getId());
-                    }
-                    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-                    setSupportActionBar(toolbar);
-
-                    RecyclerView recyclerView = findViewById(R.id.recyclerViewEndpoints);
-                    adapter = new EndpointAdapter(context, endpointList);
-
-                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setAdapter(adapter);
+                    populateEndpointList(response);
+                    setRecyclerViewandAdapter();
                 }
             }
 
             @Override
             public void onFailure(Call<Map<String, List<EndList>>> call, Throwable t) {
-                Log.e("Could not call API: ", t.getMessage(), t);
+                Log.e(getString(R.string.fail_message), t.getMessage(), t);
 
             }
         });
+    }
+
+    private void populateEndpointList(Response<Map<String, List<EndList>>> response) {
+        for(EndList end : response.body().get("list")) {
+            Endpoint newEnd = new Endpoint(end.getName(), end.getId());
+            endpointList.add(newEnd);
+        }
+    }
+
+    private void setupToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
+
+    private void setRecyclerViewandAdapter() {
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewEndpoints);
+        adapter = new EndpointAdapter(context, endpointList);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -90,15 +101,23 @@ public class EndpointActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.mHelp) {
-            Intent helpIntent = new Intent(this, HelpActivity.class);
-            startActivity(helpIntent);
+            launchHelp();
         } else if(id == R.id.mAbout) {
-            Toast.makeText(this,
-                    getString(R.string.first_about) + " " +
-                            getString(R.string.second_about),
-                    Toast.LENGTH_LONG).show();
+            showAbout();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void launchHelp() {
+        Intent helpIntent = new Intent(this, HelpActivity.class);
+        startActivity(helpIntent);
+    }
+
+    private void showAbout() {
+        Toast.makeText(this,
+                getString(R.string.first_about) + " " +
+                        getString(R.string.second_about),
+                Toast.LENGTH_LONG).show();
     }
 
     public void openFileActivity(int position, String name, String id) {

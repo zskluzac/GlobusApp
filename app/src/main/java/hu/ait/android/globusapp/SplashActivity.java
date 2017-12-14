@@ -21,15 +21,12 @@ public class SplashActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         ImageView splashImage = (ImageView) findViewById(R.id.splash_image);
-        TextView splashText = (TextView) findViewById(R.id.splash_text);
+        setupAnim(splashImage);
+        showAnim();
+    }
 
-        Animation anim = AnimationUtils.loadAnimation(
-                SplashActivity.this, R.anim.show_anim);
-        splashImage.startAnimation(anim);
-        //splashText.startAnimation(anim);
-
+    private void showAnim() {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
@@ -39,5 +36,11 @@ public class SplashActivity extends AppCompatActivity {
                 SplashActivity.this.finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
+    }
+
+    private void setupAnim(ImageView splashImage) {
+        Animation anim = AnimationUtils.loadAnimation(
+                SplashActivity.this, R.anim.show_anim);
+        splashImage.startAnimation(anim);
     }
 }

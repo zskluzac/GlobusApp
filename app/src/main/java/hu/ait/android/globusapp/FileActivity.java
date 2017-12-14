@@ -9,12 +9,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import hu.ait.android.globusapp.adapter.FileListAdapter;
 import hu.ait.android.globusapp.data.File;
 import hu.ait.android.globusapp.data.FileObject;
@@ -39,14 +36,17 @@ public class FileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file);
 
-        intentName = getIntent().getStringExtra(EndpointActivity.NAME);
-        intentID = getIntent().getStringExtra(EndpointActivity.ID);
-        context = this;
-
-        fileList = new ArrayList<>();
+        setStartingVariables();
         Retrofit retrofit = getRetrofit();
         final GlobusAPI api = retrofit.create(GlobusAPI.class);
 
+        makeAPICall(api);
+
+
+        setupToolbar();
+    }
+
+    private void makeAPICall(GlobusAPI api) {
         Call<Map<String, List<File>>> call = api.getFiles();
 
         call.enqueue(new Callback<Map<String, List<File>>>() {
@@ -54,40 +54,43 @@ public class FileActivity extends AppCompatActivity {
             public void onResponse(Call<Map<String, List<File>>> call, Response<Map<String,
                     List<File>>> response) {
                 if(response.isSuccessful()) {
-                    for(File list : response.body().get("files")) {
-                        FileObject newFile = new FileObject(list.getName(), list.getSize());
-                        fileList.add(newFile);
-                        Log.d("UPDATE: ", fileList.get(fileList.size()-1).getName()
-                                + newFile.getSize());
-                    }
-                    Toolbar toolbar = findViewById(R.id.toolbarFiles);
-                    setSupportActionBar(toolbar);
-
-                    RecyclerView recyclerView = findViewById(R.id.recyclerViewFiles);
-                    adapter = new FileListAdapter(context, fileList);
-
-                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setAdapter(adapter);
+                    populateFileList(response);
+                    setupRecyclerViewAndAdapter(context, fileList, new LinearLayoutManager(context), adapter);
                 }
             }
 
             @Override
             public void onFailure(Call<Map<String, List<File>>> call, Throwable t) {
-                Log.e("Could not call API: ", t.getMessage(), t);
+                Log.e(getString(R.string.fail_message), t.getMessage(), t);
             }
         });
+    }
 
-
-        Toolbar toolbar = findViewById(R.id.toolbarFiles);
-        setSupportActionBar(toolbar);
-
+    private void setupRecyclerViewAndAdapter(Context context, List<FileObject> fileList, LinearLayoutManager layout, FileListAdapter adapter) {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewFiles);
-        adapter = new FileListAdapter(this, fileList);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new FileListAdapter(context, fileList);
+        recyclerView.setLayoutManager(layout);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbarFiles);
+        setSupportActionBar(toolbar);
+    }
+
+    private void populateFileList(Response<Map<String, List<File>>> response) {
+        for(File list : response.body().get("files")) {
+            FileObject newFile = new FileObject(list.getName(), list.getSize());
+            fileList.add(newFile);
+        }
+    }
+
+    private void setStartingVariables() {
+        intentName = getIntent().getStringExtra(EndpointActivity.NAME);
+        intentID = getIntent().getStringExtra(EndpointActivity.ID);
+        context = this;
+        fileList = new ArrayList<>();
     }
 
     public void commitFile(int position, String filename) {

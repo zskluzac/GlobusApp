@@ -10,14 +10,9 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.util.List;
-
 import hu.ait.android.globusapp.FileActivity;
 import hu.ait.android.globusapp.R;
-import hu.ait.android.globusapp.data.File;
 import hu.ait.android.globusapp.data.FileObject;
 
 /**
@@ -59,12 +54,14 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final FileObject currFile = fileList.get(position);
-        holder.tvFileName.setText("Temp Text");
-        Log.d("HEY! ", "onBindViewHolder: called for files");
         setAnimation(holder.itemView, position);
         holder.tvFileName.setText(currFile.getName());
         String fileSizeFormatted = formatFileSize(currFile);
         holder.tvFileSize.setText(fileSizeFormatted);
+        setCardSelected(holder, currFile);
+    }
+
+    private void setCardSelected(final ViewHolder holder, final FileObject currFile) {
         holder.fileCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +77,6 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
     }
 
     private void setAnimation(View viewToAnimate, int position) {
-        // If the bound view wasn't previously displayed on screen, it's animated
         if (position > lastPosition) {
             Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
             viewToAnimate.startAnimation(animation);

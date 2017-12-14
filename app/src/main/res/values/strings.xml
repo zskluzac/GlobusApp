@@ -25,4 +25,6 @@
     <string name="third">- Third, you watch as your file is successfully copied to the new location!</string>
     <string name="how_does_it_work">How Does It Work?</string>
     <string name="how">This app works using the Globus Transfer/Authentication API, and a custom backend installed on your computer. Through the magic of the cloud, it takes your files and copies them to a new location, but only if you have access.</string>
+    <string name="fail_message">Could not call API:</string>
+    <string name="sorry">Sorry, but your transfer failed. Please try again!</string>
 </resources>
