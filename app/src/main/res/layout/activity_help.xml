@@ -37,7 +37,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/what_do_i_do_on_here"
+            android:text="@string/what"
             android:textColor="#000000"
             android:textSize="18sp" />
 

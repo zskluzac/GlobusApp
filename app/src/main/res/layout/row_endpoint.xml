@@ -8,22 +8,22 @@
     card_view:cardCornerRadius="4dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvEndName"
-            android:gravity="center"
-            android:layout_width="wrap_content"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sample_text"
             android:textColor="#000000" />
 
         <TextView
             android:id="@+id/tvEndID"
-            android:gravity="center"
-            android:layout_width="wrap_content"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000000" />
     </LinearLayout>

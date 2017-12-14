@@ -29,6 +29,7 @@ public class TransferActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transfer);
+        getWindow().getDecorView().setBackgroundColor(Color.LTGRAY);
         getIntents();
 
         TextView tvTaskDescription = findViewById(R.id.tvTaskDescription);

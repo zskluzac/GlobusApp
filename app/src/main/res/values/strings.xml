@@ -27,4 +27,5 @@
     <string name="how">This app works using the Globus Transfer/Authentication API, and a custom backend installed on your computer. Through the magic of the cloud, it takes your files and copies them to a new location, but only if you have access.</string>
     <string name="fail_message">Could not call API:</string>
     <string name="sorry">Sorry, but your transfer failed. Please try again!</string>
+    <string name="what">What Do I Do On Here?</string>
 </resources>

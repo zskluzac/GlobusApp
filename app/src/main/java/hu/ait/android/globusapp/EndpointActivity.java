@@ -3,6 +3,7 @@ package hu.ait.android.globusapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class EndpointActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_endpoint);
+        getWindow().getDecorView().setBackgroundColor(Color.LTGRAY);
 
         context = this;
         endpointList = new ArrayList<>();
